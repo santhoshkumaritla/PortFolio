@@ -73,7 +73,7 @@ const Projects: React.FC = () => {
     {
       title: "GitHub-AgentTask",
       date: "2025",
-      image: "public/images/git agent.jpeg",
+      image: "/images/git agent.jpeg",
       tools: ["Python", "Flask", "GitHub API"],
       github: "https://github.com/santhoshkumaritla/GitHub-AgentTask",
       description: [
