@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
     {
       title: "CROP-PREDICTION",
       date: "Dec 2024",
-      image: "public/images/crop-prediction.jpeg",
+      image: "/images/crop-prediction.jpeg",
       tools: ["Python", "Scikit-Learn", "TensorFlow", "FastAPI", "PostgreSQL"],
       github: "https://github.com/santhoshkumaritla/CROP-PREDICTION",
       description: [
@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
     {
       title: "AI-Powered CRM System",
       date: "Feb 2025",
-      image: "public/images/CRM.jpeg",
+      image: "/images/CRM.jpeg",
       tools: ["Python", "Flask", "MongoDB", "Google Gemini API", "Firebase"],
       github: "https://github.com/santhoshkumaritla/CRM",
       description: [
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
     {
       title: "Virtual Health Assistant",
       date: "Mar 2025",
-      image: "public/images/Virtual-Health-Assist.jpeg",
+      image: "/images/Virtual-Health-Assist.jpeg",
       tools: ["AI Models", "Wearable Integration", "Flask", "TensorFlow"],
       github: "https://github.com/santhoshkumaritla/Health-Assistant",
       description: [
@@ -49,7 +49,7 @@ const Projects: React.FC = () => {
     {
       title: "xRAY-AnaLyzer",
       date: "Apr 2025",
-      image: "public/images/x-ray.jpeg",
+      image: "/images/X-ray.jpeg",
       tools: ["Python", "OpenCV", "TensorFlow", "Keras", "Flask"],
       github: "https://github.com/santhoshkumaritla/xRAY-AnaLyzer",
       description: [
@@ -61,7 +61,7 @@ const Projects: React.FC = () => {
     {
       title: "TaskHub-Project",
       date: "2025",
-      image: "public/images/TaskHub.jpeg",
+      image: "/images/TaskHub.jpeg",
       tools: ["Tailwind", "React", "Node.js", "Express", "MongoDB", "Firebase"],
       github: "https://github.com/santhoshkumaritla/TaskHub-Project",
       description: [
@@ -174,7 +174,7 @@ const Projects: React.FC = () => {
                         </ul>
                       </div>
                       {/* Image */}
-                      <div className="md:w-80 flex-shrink-0 z-10 flex items-center justify-center">
+                      <div className="md:w-80 flex-shrink-0 z-5 flex items-center justify-center">
                         <img
                           src={project.image}
                           alt={project.title}
