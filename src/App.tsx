@@ -7,6 +7,7 @@ import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
 import Achievements from './components/sections/Achievements';
 import Contact from './components/sections/Contact';
+import Education from './components/sections/Education';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
       <div className="relative z-10">
       <Navbar />
       
-        <main className="relative">
+        <main className="relative flex flex-col gap-y-24">
         <About />
         <Skills />
+        <Education />
         <Experience />
         <Projects />
         <Achievements />

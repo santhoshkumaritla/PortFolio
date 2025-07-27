@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Education', href: '#education' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Achievements', href: '#achievements' },
@@ -55,13 +56,12 @@ const Navbar: React.FC = () => {
         isScrolled ? 'bg-gray-900/90 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="text-xl font-bold text-white">
-            Portfolio
+            Santhosh Kumar
           </a>
-          
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navLinks.map(link => (
@@ -78,43 +78,53 @@ const Navbar: React.FC = () => {
               </a>
             ))}
           </nav>
-          
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden text-gray-300 hover:text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400"
             onClick={toggleMenu}
             aria-label="Toggle menu"
+            style={{ fontSize: 28 }}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
       </div>
-      
-      {/* Mobile Navigation */}
-      <div 
-        className={`md:hidden fixed inset-0 bg-gray-900/95 z-40 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full">
-          <nav className="flex flex-col items-center space-y-6">
-            {navLinks.map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-xl font-medium transition-colors ${
-                  activeSection === link.href.substring(1)
-                    ? 'text-indigo-400'
-                    : 'text-gray-300 hover:text-white'
-                }`}
-                onClick={closeMenu}
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+      {/* Mobile Navigation Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/70 z-40 flex items-center justify-center transition-opacity duration-300"
+          onClick={closeMenu}
+        >
+          <div
+            className="bg-gray-900/95 rounded-xl shadow-xl p-8 w-11/12 max-w-xs mx-auto flex flex-col items-center relative animate-fadeIn"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl focus:outline-none"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              <X size={32} />
+            </button>
+            <nav className="flex flex-col items-center space-y-8 mt-8 mb-4 w-full">
+              {navLinks.map(link => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-2xl font-semibold w-full text-center py-2 rounded-lg transition-colors ${
+                    activeSection === link.href.substring(1)
+                      ? 'text-indigo-400 bg-gray-800/60'
+                      : 'text-gray-200 hover:text-white hover:bg-gray-800/40'
+                  }`}
+                  onClick={closeMenu}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

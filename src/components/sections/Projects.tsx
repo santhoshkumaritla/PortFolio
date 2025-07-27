@@ -1,200 +1,170 @@
 import React, { useState, useEffect } from 'react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
-import { Calendar, Wrench, ArrowUpRight, Github, ChevronLeft, ChevronRight, Code } from 'lucide-react';
+import { Calendar, Wrench, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Projects: React.FC = () => {
-  const animation = useScrollAnimation({ 
-    animationType: 'fade-in'
-  });
+  const animation = useScrollAnimation({ animationType: 'fade-in' });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-play functionality
-  useEffect(() => {
-    let interval: number;
-    
-    if (isAutoPlaying) {
-      interval = window.setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-      }, 5000); // Change slide every 5 seconds
-    }
-
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [isAutoPlaying]);
-
-  // Pause auto-play on hover
-  const handleMouseEnter = () => setIsAutoPlaying(false);
-  const handleMouseLeave = () => setIsAutoPlaying(true);
 
   const projects = [
     {
       title: "CROP-PREDICTION",
       date: "Dec 2024",
-      tools: [
-        { name: "Python", icon: <Code className="w-4 h-4" /> },
-        { name: "Scikit-Learn", icon: <Code className="w-4 h-4" /> },
-        { name: "TensorFlow", icon: <Code className="w-4 h-4" /> },
-        { name: "FastAPI", icon: <Code className="w-4 h-4" /> },
-        { name: "PostgreSQL", icon: <Code className="w-4 h-4" /> }
-      ],
+      image: "public/images/crop-prediction.jpeg",
+      tools: ["Python", "Scikit-Learn", "TensorFlow", "FastAPI", "PostgreSQL"],
       github: "https://github.com/santhoshkumaritla/CROP-PREDICTION",
       description: [
-        "Engineered an advanced ML model achieving 95% accuracy in crop yield predictions",
-        "Implemented ensemble learning with Random Forest and XGBoost for robust predictions",
-        "Developed RESTful API with FastAPI serving 1000+ daily predictions",
-        "Integrated real-time weather data and soil analysis for precise recommendations"
+        "Achieved 95% accuracy in crop yield predictions using ML.",
+        "Implemented Random Forest & XGBoost for robust predictions.",
+        "Built FastAPI backend serving 1000+ daily predictions.",
+        "Integrated real-time weather & soil data."
       ]
     },
     {
       title: "AI-Powered CRM System",
       date: "Feb 2025",
-      tools: [
-        { name: "Python", icon: <Code className="w-4 h-4" /> },
-        { name: "Flask", icon: <Code className="w-4 h-4" /> },
-        { name: "MongoDB", icon: <Code className="w-4 h-4" /> },
-        { name: "Google Gemini API", icon: <Code className="w-4 h-4" /> },
-        { name: "Firebase", icon: <Code className="w-4 h-4" /> }
-      ],
+      image: "public/images/CRM.jpeg",
+      tools: ["Python", "Flask", "MongoDB", "Google Gemini API", "Firebase"],
       github: "https://github.com/santhoshkumaritla/CRM",
       description: [
-        "Created AI chatbot for personalized product recommendations",
-        "Implemented Firebase authentication for secure user login",
-        "Increased customer engagement by 30%"
+        "AI chatbot for personalized recommendations.",
+        "Secure user login with Firebase authentication.",
+        "Boosted engagement by 30%."
       ]
     },
     {
       title: "Virtual Health Assistant",
-      date: "March 2025",
-      tools: [
-        { name: "AI Models", icon: <Code className="w-4 h-4" /> },
-        { name: "Wearable Integration", icon: <Code className="w-4 h-4" /> },
-        { name: "Flask", icon: <Code className="w-4 h-4" /> },
-        { name: "TensorFlow", icon: <Code className="w-4 h-4" /> }
-      ],
+      date: "Mar 2025",
+      image: "public/images/Virtual-Health-Assist.jpeg",
+      tools: ["AI Models", "Wearable Integration", "Flask", "TensorFlow"],
       github: "https://github.com/santhoshkumaritla/Health-Assistant",
       description: [
-        "Developed healthcare solution for medical insights and recommendations",
-        "Integrated wearable devices for health monitoring",
-        "Implemented symptom analysis and virtual consultations"
+        "Healthcare insights and recommendations.",
+        "Wearable integration for real-time monitoring.",
+        "Symptom analysis & virtual consultations."
       ]
     },
     {
       title: "xRAY-AnaLyzer",
-      date: "April 2025",
-      tools: [
-        { name: "Python", icon: <Code className="w-4 h-4" /> },
-        { name: "OpenCV", icon: <Code className="w-4 h-4" /> },
-        { name: "TensorFlow", icon: <Code className="w-4 h-4" /> },
-        { name: "Keras", icon: <Code className="w-4 h-4" /> },
-        { name: "Flask", icon: <Code className="w-4 h-4" /> }
-      ],
+      date: "Apr 2025",
+      image: "public/images/x-ray.jpeg",
+      tools: ["Python", "OpenCV", "TensorFlow", "Keras", "Flask"],
       github: "https://github.com/santhoshkumaritla/xRAY-AnaLyzer",
       description: [
-        "Developed AI-based tool for automated X-ray image analysis",
-        "Integrated TensorFlow and OpenCV for image processing",
-        "Built Flask web application for easy deployment"
+        "AI-based tool for automated X-ray analysis.",
+        "TensorFlow & OpenCV for image processing.",
+        "Flask app for easy deployment."
+      ]
+    },
+    {
+      title: "TaskHub-Project",
+      date: "2025",
+      image: "public/images/TaskHub.jpeg",
+      tools: ["Tailwind", "React", "Node.js", "Express", "MongoDB", "Firebase"],
+      github: "https://github.com/santhoshkumaritla/TaskHub-Project",
+      description: [
+        "Full-stack task management platform.",
+        "Real-time updates & user-friendly dashboards.",
+        "Scalable architecture with Docker."
+      ]
+    },
+    {
+      title: "GitHub-AgentTask",
+      date: "2025",
+      image: "public/images/git agent.jpeg",
+      tools: ["Python", "Flask", "GitHub API"],
+      github: "https://github.com/santhoshkumaritla/GitHub-AgentTask",
+      description: [
+        "Automated agent for managing GitHub tasks and repositories.",
+        "Implements custom workflows using Python and the GitHub API.",
+        "Streamlines project management and automates repetitive actions."
       ]
     }
   ];
 
-  const nextProject = () => {
-    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % projects.length);
-  };
+  // Auto-play carousel
+  useEffect(() => {
+    let interval: number;
+    if (isAutoPlaying) {
+      interval = window.setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % projects.length);
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
-  const prevProject = () => {
-    setCurrentIndex((prevIndex: number) => (prevIndex - 1 + projects.length) % projects.length);
-  };
-  
+  const nextProject = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
+  const prevProject = () => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+
   return (
     <section id="projects" className="min-h-screen flex items-center justify-center py-12 px-4">
-      <div 
-        ref={animation.ref}
-        className={`max-w-6xl w-full ${animation.animationClasses}`}
-      >
+      <div ref={animation.ref} className={`max-w-6xl w-full ${animation.animationClasses}`}>
         <div className="relative">
-          {/* Background Accents */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-indigo-500/3 rounded-full blur-3xl animate-float" 
-               style={{ animationDuration: '8s' }} />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-sky-500/3 rounded-full blur-3xl animate-float" 
-               style={{ animationDuration: '10s', animationDelay: '1s' }} />
+          {/* Background Effects */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl animate-float" />
 
-          {/* Content */}
-          <div className="relative bg-gradient-to-b from-slate-900/90 to-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-800/50 p-5 lg:p-8 shadow-[0_0_15px_rgba(0,0,0,0.1)]">
-            <div className="space-y-8">
-              {/* Section Header */}
-              <div className="text-center">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-100 via-sky-200 to-indigo-200 bg-clip-text text-transparent">
-                  Featured Projects
-                </h2>
-              </div>
+          {/* Container */}
+          <div className="relative bg-gradient-to-b from-slate-900/90 to-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-800/50 p-6 lg:p-10 shadow-xl">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-100 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+                Featured Projects
+              </h2>
+            </div>
 
-              {/* Project Carousel */}
-              <div 
-                className="relative"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <div className="overflow-hidden">
-                  <div 
-                    className="flex transition-transform duration-500 ease-out"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                  >
-                    {projects.map((project, index) => (
-                      <div
-                        key={index}
-                        className="w-full flex-shrink-0 group relative bg-slate-800/30 rounded-lg p-6 border border-slate-700/50 hover:bg-slate-800/50 transition-all duration-300"
+            {/* Carousel */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
+              <div className="overflow-hidden">
+                <div
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                >
+                  {projects.map((project, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0 flex flex-col md:flex-row gap-8 bg-slate-800/40 bg-clip-padding backdrop-blur-xl rounded-2xl p-6 border border-slate-700/60 shadow-xl relative group transition-all duration-300 hover:shadow-2xl hover:border-sky-400/40 hover:bg-slate-800/60"
+                    >
+                      {/* Gradient Accent Bar */}
+                      <div className="hidden md:block absolute left-0 top-6 bottom-6 w-2 rounded-full bg-gradient-to-b from-sky-400 via-indigo-400 to-purple-400 opacity-80" />
+                      {/* GitHub Icon at Corner */}
+                      <button
+                        onClick={() => window.open(project.github, '_blank')}
+                        className="absolute top-4 right-4 p-2 rounded-full bg-slate-700/60 hover:bg-sky-700 transition z-10 shadow-md border border-sky-400/30"
                       >
-                        {/* Project Header */}
-                        <div className="flex items-start justify-between mb-4">
-                          <h3 className="text-xl font-semibold text-slate-200 group-hover:text-sky-300 transition-colors duration-300">
-                            {project.title}
-                          </h3>
-                          <button 
-                            onClick={() => window.open(project.github, '_blank')}
-                            className="p-2 rounded-full bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 transition-colors duration-300"
-                          >
-                            <Github className="w-5 h-5 text-slate-400 hover:text-sky-400" />
-                          </button>
-                        </div>
-
-                        {/* Date */}
-                        <div className="flex items-center gap-1.5 text-slate-400 text-sm mb-3">
+                        <Github className="w-5 h-5 text-sky-400" />
+                      </button>
+                      {/* Text */}
+                      <div className="flex-1 z-10">
+                        <h3 className="text-2xl font-bold text-slate-100 mb-3 tracking-tight drop-shadow-sm">
+                          {project.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-slate-400 mb-4">
                           <Calendar className="w-4 h-4" />
-                          <span>{project.date}</span>
+                          <span className="font-medium">{project.date}</span>
                         </div>
-
-                        {/* Tools */}
                         <div className="mb-4">
-                          <div className="flex items-center gap-1.5 mb-2">
+                          <div className="flex items-center gap-2 mb-2">
                             <Wrench className="w-4 h-4 text-sky-400" />
-                            <span className="text-slate-300 text-sm">Technologies Used</span>
+                            <span className="text-slate-300 text-sm font-semibold">Technologies</span>
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {project.tools.map((tool, idx) => (
-                              <div
+                              <span
                                 key={idx}
-                                className="group bg-slate-700/30 rounded-lg p-2 border border-slate-600/50 hover:border-slate-500/50 hover:bg-slate-700/50 transition-all duration-300"
+                                className="px-3 py-1 bg-sky-900/30 text-sky-200 rounded-full text-xs font-medium border border-sky-700/30 shadow-sm hover:bg-sky-800/50 transition"
                               >
-                                <div className="flex items-center gap-2">
-                                  <div className="p-1 rounded-lg bg-slate-600/50 text-slate-300 border border-slate-500/50">
-                                    {tool.icon}
-                                  </div>
-                                  <span className="text-xs font-medium text-slate-200 group-hover:text-slate-100 transition-colors duration-300">
-                                    {tool.name}
-                                  </span>
-                                </div>
-                              </div>
+                                {tool}
+                              </span>
                             ))}
                           </div>
                         </div>
-
-                        {/* Description */}
-                        <ul className="space-y-2 text-slate-300 text-sm">
+                        <ul className="space-y-2 text-slate-200 text-sm">
                           {project.description.map((item, i) => (
                             <li key={i} className="flex gap-2">
                               <span className="text-sky-400">•</span>
@@ -202,45 +172,47 @@ const Projects: React.FC = () => {
                             </li>
                           ))}
                         </ul>
-
-                        {/* Hover Glow Effect */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg blur transition-opacity duration-500" />
                       </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Navigation Buttons */}
-                <button
-                  onClick={prevProject}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-2 rounded-full bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 transition-colors duration-300"
-                  aria-label="Previous project"
-                >
-                  <ChevronLeft className="w-5 h-5 text-slate-400 hover:text-sky-400" />
-                </button>
-                <button
-                  onClick={nextProject}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-2 rounded-full bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 transition-colors duration-300"
-                  aria-label="Next project"
-                >
-                  <ChevronRight className="w-5 h-5 text-slate-400 hover:text-sky-400" />
-                </button>
-
-                {/* Project Indicators */}
-                <div className="flex justify-center gap-2 mt-6">
-                  {projects.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === currentIndex 
-                          ? 'bg-sky-400 w-4' 
-                          : 'bg-slate-600 hover:bg-slate-500'
-                      }`}
-                      aria-label={`Go to project ${index + 1}`}
-                    />
+                      {/* Image */}
+                      <div className="md:w-80 flex-shrink-0 z-10 flex items-center justify-center">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-56 object-cover rounded-xl border-2 border-sky-400/20 shadow-lg transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl"
+                        />
+                      </div>
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 rounded-2xl blur-lg transition-opacity duration-500 pointer-events-none" />
+                    </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevProject}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-800/70 hover:bg-slate-700 transition"
+              >
+                <ChevronLeft className="w-6 h-6 text-sky-300" />
+              </button>
+              <button
+                onClick={nextProject}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-800/70 hover:bg-slate-700 transition"
+              >
+                <ChevronRight className="w-6 h-6 text-sky-300" />
+              </button>
+
+              {/* Indicators */}
+              <div className="flex justify-center mt-6 gap-2">
+                {projects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentIndex(i)}
+                    className={`w-2 h-2 rounded-full ${
+                      i === currentIndex ? 'bg-sky-400 w-4' : 'bg-slate-600 hover:bg-slate-500'
+                    } transition-all`}
+                  />
+                ))}
               </div>
             </div>
           </div>

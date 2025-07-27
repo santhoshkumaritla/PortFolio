@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import useScrollAnimation from '../../hooks/useScrollAnimation';
+import { motion } from 'framer-motion';
 import { Building2, Link, MapPin, Calendar } from 'lucide-react';
 
 const Experience: React.FC = () => {
-  const animation = useScrollAnimation({ 
-    animationType: 'fade-in'
-  });
-
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -16,18 +12,12 @@ const Experience: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     );
-
-    const element = document.getElementById('experience-container');
-    if (element) {
-      observer.observe(element);
-    }
-
+    const element = document.getElementById('experience-section');
+    if (element) observer.observe(element);
     return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
+      if (element) observer.unobserve(element);
     };
   }, []);
 
@@ -35,97 +25,136 @@ const Experience: React.FC = () => {
     {
       company: "DevSecEngOops",
       role: "Software Engineer Intern",
-      period: "Mar 2024 - Present",
+      period: "Mar 2024 – Present",
       location: "Kondapur, Telangana, India",
       website: "https://www.devsecengops.com/",
       achievements: [
-        "Created responsive web pages using HTML, CSS, JavaScript, and React, improving engagement by 30%",
-        "Designed UI/UX with Figma, speeding up development process by 40%",
-        "Analyzed user interactions to improve navigation and content usability",
-        "Presented final designs to team, receiving appreciation for creative work"
+        "Designed and developed interactive, responsive websites using HTML, CSS, JavaScript, and React.",
+        "Created UI/UX prototypes in Figma and implemented them for improved user experience.",
+        "Built dynamic web features and optimized performance for scalability."
+      ]
+    },
+    {
+      company: "GirlScript Summer of Code",
+      role: "Open Source Contributor",
+      period: "Jul 2025 – Present · 1 mo",
+      location: "Remote",
+      website: "https://gssoc.girlscript.tech/",
+      achievements: [
+        "Contributed to open source projects as part of GirlScript Summer of Code.",
+        "Collaborated with other contributors to improve project features and documentation."
       ]
     }
   ];
 
+  // Framer Motion Variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.2, duration: 0.8 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section id="experience" className="min-h-[80vh] flex items-center justify-center py-8 px-4 overflow-hidden">
-      <div 
-        ref={animation.ref}
-        className={`max-w-6xl w-full ${animation.animationClasses}`}
-      >
-        <div className="relative">
-          {/* Background Accents */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-gray-500/3 rounded-full blur-3xl animate-float" 
-               style={{ animationDuration: '8s' }} />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-gray-500/3 rounded-full blur-3xl animate-float" 
-               style={{ animationDuration: '10s', animationDelay: '1s' }} />
+    <section
+      id="experience"
+      className="relative min-h-[90vh] py-16 px-6 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 overflow-hidden"
+    >
+      {/* Animated background accents */}
+      <motion.div
+        className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, scale: [1, 1.1, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute -bottom-24 -left-24 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, scale: [1, 1.15, 1] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
 
-          {/* Content */}
-          <div className="relative bg-gradient-to-b from-gray-900/90 to-gray-900/95 backdrop-blur-xl rounded-xl border border-gray-700/50 p-5 lg:p-8 shadow-[0_0_15px_rgba(0,0,0,0.1)]">
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-100 text-center">
-                Professional Experience
-              </h2>
-              <div id="experience-container" className="grid gap-6">
-                {experiences.map((exp, index) => (
-                  <div
-                    key={index}
-                    className={`bg-gray-800/30 rounded-lg p-6 border-2 border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 ${
-                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}
-                    style={{
-                      transitionDelay: `${index * 100}ms`
-                    }}
-                  >
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-lg bg-gray-700/50 text-gray-300 border border-gray-600/50">
-                          <Building2 className="w-6 h-6" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-200">{exp.company}</h3>
-                          <p className="text-base text-gray-400 mt-1">{exp.role}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-2 text-gray-400">
-                          <Calendar className="w-5 h-5" />
-                          <span className="text-base">{exp.period}</span>
-                        </div>
-                        <a 
-                          href={exp.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-base text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          <Link className="w-5 h-5" />
-                          Visit Website
-                        </a>
-                      </div>
-                    </div>
+      <div className="relative max-w-6xl mx-auto">
+        {/* Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl font-extrabold text-center text-gray-100 mb-12"
+        >
+          Professional Experience
+        </motion.h2>
 
-                    <div className="mt-4 flex items-center gap-2 text-gray-400">
-                      <MapPin className="w-5 h-5" />
-                      <span className="text-base">{exp.location}</span>
-                    </div>
-
-                    <div className="mt-4 p-3 bg-gray-700/20 rounded-lg border border-gray-600/30">
-                      <h4 className="text-lg font-semibold text-gray-200 mb-2">Key Achievements</h4>
-                      <ul className="space-y-1.5">
-                        {exp.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex gap-2 items-start">
-                            <span className="text-blue-400 mt-1">•</span>
-                            <span className="text-gray-300 text-base leading-relaxed">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
+        {/* Experience Cards */}
+        <motion.div
+          className="grid md:grid-cols-2 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+        >
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(59,130,246,0.4)" }}
+              className="bg-gray-800/40 backdrop-blur-md rounded-xl border border-gray-700/50 hover:border-blue-500/50 p-6 transition-all duration-300"
+            >
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gray-700/50 rounded-lg border border-gray-600/50">
+                  <Building2 className="w-6 h-6 text-blue-400" />
+                </div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-semibold text-gray-100">{exp.company}</h3>
+                  {/* Show badge for GirlScript Summer of Code */}
+                  {exp.company === 'GirlScript Summer of Code' && (
+                    <img src="/images/1753596787293.jpeg" alt="GSSoC 2025 Badge" className="w-10 h-10 rounded-full shadow-lg border-2 border-yellow-400 ml-2" />
+                  )}
+                </div>
+                <p className="text-base text-gray-400">{exp.role}</p>
               </div>
-            </div>
-          </div>
-        </div>
+
+              {/* Details */}
+              <div className="flex items-center justify-between text-gray-400 text-sm mb-3">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {exp.period}
+                </div>
+                <a
+                  href={exp.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Link className="w-4 h-4" /> Website
+                </a>
+              </div>
+
+              {/* Location */}
+              <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">
+                <MapPin className="w-4 h-4" />
+                {exp.location}
+              </div>
+
+              {/* Achievements */}
+              <div className="bg-gray-700/30 rounded-lg p-4 border border-gray-600/30">
+                <h4 className="text-lg font-semibold text-gray-200 mb-2">Key Achievements</h4>
+                <ul className="list-disc pl-5 space-y-2 text-gray-300 text-sm">
+                  {exp.achievements.map((achievement, idx) => (
+                    <li key={idx}>{achievement}</li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
