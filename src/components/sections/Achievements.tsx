@@ -83,7 +83,7 @@ const Achievements: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="h-6 w-1 bg-gradient-to-b from-sky-400 to-indigo-400 rounded-full"></div>
-                    <h3 className="text-xl font-semibold text-slate-200">Our Achievements</h3>
+                    <h3 className="text-xl font-semibold text-slate-200">My Achievements</h3>
                   </div>
                   <div className="space-y-4">
                     {achievements.map((achievement, index) => (
