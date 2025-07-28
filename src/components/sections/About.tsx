@@ -103,11 +103,12 @@ const About: React.FC = () => {
 
             {/* Resume Button */}
             <a
-              href="/santhosh (1).pdf"
-              download
+              href="https://drive.google.com/file/d/1E0a6FfsvdTZOB4-MW_7ZLfJ19aF81MhJ/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-6 py-3 mt-4 bg-gradient-to-r from-sky-600 to-indigo-600 rounded-lg text-white font-semibold shadow-lg overflow-hidden"
             >
-              <span className="relative z-10">Download Resume</span>
+              <span className="relative z-10">Open Resume</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </a>
           </motion.div>
